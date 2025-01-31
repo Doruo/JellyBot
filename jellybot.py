@@ -1,7 +1,6 @@
 import discord
 import requests
 from discord.ext import commands, tasks
-from discord import app_commands
 from dotenv import load_dotenv
 import os
 
@@ -34,7 +33,7 @@ class JellyfinBot(commands.Bot):
             self.show_jellyfin_status(self, server_status)
   
             # Vérification nouveaux épisodes
-            new_episodes = self.get_new_episodes()
+            new_episodes = self.get_new_episodes(self)
 
             for episode in new_episodes:
                 await self.send_episode_notification(episode)
