@@ -120,7 +120,7 @@ async def status(ctx):
 @bot.command(name="new")
 async def new (ctx) :
 
-    new_episodes = bot.get_new_episodes()
+    new_episodes = await bot.get_new_episodes()
 
     if new_episodes == False :
         await ctx.send("Aucun réponse du serveur.")
