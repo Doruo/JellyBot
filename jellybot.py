@@ -56,7 +56,7 @@ class JellyfinBot(commands.Bot):
 
         headers = {'X-Emby-Token': self.api_key}
        
-        response = await requests.get(f"{self.jellyfin_url}/Items/Latest", headers=headers)
+        response = requests.get(f"{self.jellyfin_url}/Items/Latest", headers=headers)
 
         resultat = await response.json();
 
@@ -113,8 +113,10 @@ async def status(ctx):
 
     server_status = bot.check_server_status()
 
+    server_status_msg = "en marche" if server_status == 'started' else "éteind"
     server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"  
-    await ctx.send(f"{server_status_color} Server {server_status} ")
+
+    await ctx.send(f"{server_status_color} ~ Server {server_status_msg} !")
 
 ## COMMANDE: NEW
 @bot.command(name="new")
