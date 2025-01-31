@@ -94,11 +94,12 @@ JELLYFIN_API_KEY = os.getenv('JELLYFIN_API_KEY')
 bot = JellyfinBot(JELLYFIN_URL, JELLYFIN_API_KEY)
 
 @bot.event
-async def on_ready():
-    print(f'Bot connecté : {bot.user}')
+async def on_ready(interaction: discord.Interaction):
+    await interaction.response.send_message(f'Bot connecté : {bot.user}')
 
 # /-/-/-/-/ GESTION DES COMMANDES /-/-/-/-/
 
+## COMMANDE: STATUS
 @bot.tree.command(name="status")
 async def status(interaction: discord.Interaction):        
 
@@ -106,6 +107,18 @@ async def status(interaction: discord.Interaction):
     server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"  
 
     await interaction.response.send_message(f"[{server_status_color}] Serveur Jellyfin: {server_status} !")
+
+## COMMANDE: NEW
+@bot.tree.command(name="new")
+async def new (interaction: discord.Interaction) :
+
+    new_episodes = bot.get_new_episodes(bot)
+
+    await interaction.response.send_message("Nouveaux épisodes disponibles: ")
+
+    for episode in new_episodes :
+        await interaction.response.send_message(f"{episode['Name']} - {episode['SeriesName']}")
+
 # /-/-/-/-/-----------------------/-/-/-/-/
 
 bot.run(DISCORD_TOKEN)
