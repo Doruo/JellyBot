@@ -33,7 +33,7 @@ class JellyfinBot(commands.Bot):
             self.show_jellyfin_status(self, server_status)
   
             # Vérification nouveaux épisodes
-            new_episodes = self.get_new_episodes(self)
+            new_episodes = self.get_new_episodes()
 
             for episode in new_episodes:
                 await self.send_episode_notification(episode)
@@ -112,7 +112,7 @@ async def status(ctx):
 @bot.command(name="new")
 async def new (ctx) :
 
-    new_episodes = bot.get_new_episodes(bot)
+    new_episodes = bot.get_new_episodes()
 
     await ctx.send("Nouveaux épisodes disponibles: ")
 
