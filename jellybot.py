@@ -81,7 +81,6 @@ class JellyfinBot(commands.Bot):
         )
         await channel.send(embed=embed)
 
-
 load_dotenv()
 # Configuration
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
@@ -102,10 +101,8 @@ async def on_ready():
 @bot.command(name="status")
 async def status(ctx):        
 
-    server_status = bot.check_server_status()
-    server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"  
-
-    await ctx.send(f"[{server_status_color}] Serveur Jellyfin: {server_status} !")
+    server_status_color = ":green_circle:" if bot.check_server_status() == 'started' else ":red_circle:"  
+    await ctx.send(f"Status serveur: {server_status_color}")
 
 ## COMMANDE: NEW
 @bot.command(name="new")
