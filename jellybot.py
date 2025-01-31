@@ -52,18 +52,26 @@ class JellyfinBot(commands.Bot):
         except requests.exceptions.RequestException:
             return 'stopped'
 
-    def get_new_episodes(self):
+    async def get_new_episodes(self):
+
         headers = {'X-Emby-Token': self.api_key}
-        response = requests.get(f"{self.jellyfin_url}/Items/Latest", headers=headers)
-        episodes = response.json().get('Items', [])
-        
-        new_episodes = [
-            ep for ep in episodes 
-            if ep['Id'] not in self.last_episodes
-        ]
-        
-        self.last_episodes.update(ep['Id'] for ep in new_episodes)
-        return new_episodes
+       
+        response = await requests.get(f"{self.jellyfin_url}/Items/Latest", headers=headers)
+
+        resultat = await response.json();
+
+        if resultat.success :
+            episodes = resultat.get('Items', [])
+ 
+            new_episodes = [
+                ep for ep in episodes 
+                if ep['Id'] not in self.last_episodes
+            ]
+
+            self.last_episodes.update(ep['Id'] for ep in new_episodes)
+            return new_episodes
+        else : 
+            return False
 
     # Envoie une notification par message au canal du serveur discord
     async def send_server_notification(self, message):
@@ -114,10 +122,13 @@ async def new (ctx) :
 
     new_episodes = bot.get_new_episodes()
 
-    await ctx.send("Nouveaux épisodes disponibles: ")
+    if new_episodes == False :
+        await ctx.send("Aucun réponse du serveur.")
 
-    for episode in new_episodes :
-        await ctx.send(f"{episode['Name']} - {episode['SeriesName']}")
+    else :
+        await ctx.send("Nouveaux épisodes disponibles: ")
+        for episode in new_episodes :
+            await ctx.send(f"{episode['Name']} - {episode['SeriesName']}")
 
 # /-/-/-/-/-----------------------/-/-/-/-/
 
