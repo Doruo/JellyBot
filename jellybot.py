@@ -100,7 +100,7 @@ async def on_ready():
 # /-/-/-/-/ GESTION DES COMMANDES /-/-/-/-/
 
 ## COMMANDE: STATUS
-@bot.tree.command(name="status")
+@bot.command(name="status")
 async def status(ctx):        
 
     server_status = bot.check_server_status()
@@ -109,7 +109,7 @@ async def status(ctx):
     await ctx.send(f"[{server_status_color}] Serveur Jellyfin: {server_status} !")
 
 ## COMMANDE: NEW
-@bot.tree.command(name="new")
+@bot.command(name="new")
 async def new (ctx) :
 
     new_episodes = bot.get_new_episodes(bot)
