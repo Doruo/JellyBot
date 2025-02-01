@@ -18,9 +18,10 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 - [Fonctionnalités](#fonctionnalités)
 - [Installation](#installation)
 - [Configuration](#configuration)
-  - [Discord](#configuration-discord)
-  - [Jellyfin](#configuration-jellyfin)
-  - [Channel Discord](#configuration-du-channel-discord)
+  - [Discord](#discord)
+  - [Channel Discord](#channel-discord)
+  - [Jellyfin](#jellyfin)
+- [Annexes](#annexes)
 
 ## Fonctionnalités
 
@@ -101,7 +102,7 @@ Sur Linux :
 3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
 
 
-## Serveur Jellyfin
+## Jellyfin
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
@@ -111,8 +112,5 @@ Sur Linux :
 ## Annexes
 
 - [Jellyfin - The Free Software Media System](https://jellyfin.org/)
-
-## Contributeurs
-
-- Marc Haye, structure et fonctionnement du code.
-- Yann Bodiguel, pour la configuration de python et de l'environnement d'execution local.
+- [Jellyfin Documentation](https://jellyfin.org/docs/)
+- [Discord Developer Portal](https://discord.com/developers)
