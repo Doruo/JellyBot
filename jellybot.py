@@ -21,7 +21,7 @@ class JellyfinBot(commands.Bot):
     def cog_unload(self):
         self.check_jellyfin.cancel()
 
-    async def show_jellyfin_status(self, server_status) :
+    async def show_jellyfin_status(self, server_status):
         server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"  
         await self.send_server_notification(f"Status serveur: {server_status} {server_status_color}")
 
@@ -30,10 +30,10 @@ class JellyfinBot(commands.Bot):
         try:
             # Vérifier le statut du serveur
             server_status = self.check_server_status()
-            self.show_jellyfin_status(self, server_status)
+            await self.show_jellyfin_status(server_status)
   
             # Vérification nouveaux épisodes
-            new_episodes = self.get_new_episodes()
+            new_episodes = await self.get_new_episodes()
 
             for episode in new_episodes:
                 await self.send_episode_notification(episode)
@@ -41,16 +41,16 @@ class JellyfinBot(commands.Bot):
         except Exception as e:
             print(f"Erreur lors de la vérification Jellyfin : {e}")
 
+
     # Logique pour vérifier le statut du serveur
     # Peut utiliser un ping, une requête API, ou un fichier de log
     def check_server_status(self):
         try:
             response = requests.get(f"{self.jellyfin_url}/System/Ping", headers={'X-Emby-Token': self.api_key},timeout=5)
-            
             return 'started' if response.status_code == 200 else 'stopped'
-        
         except requests.exceptions.RequestException:
             return 'stopped'
+
 
     async def get_new_episodes(self):
 
@@ -97,6 +97,7 @@ JELLYFIN_URL = os.getenv('JELLYFIN_URL')
 # ID du canal Discord utilisé par le bot
 DISCORD_CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 JELLYFIN_API_KEY = os.getenv('JELLYFIN_API_KEY')
+JELLYFIN_USER_ID = os.getenv('JELLYFIN_USER_ID')
 
 #Admin userID (to find it : go to YOUR jellyfin website as admin > Left Panel > Users > your user, and copy the userId from the url)
 ADMIN_USERID = os.getenv('ADMIN_USERID')
@@ -126,7 +127,7 @@ async def new (ctx) :
 
     new_episodes = await bot.get_new_episodes()
 
-    if new_episodes == False :
+    if not new_episodes:
         await ctx.send("Aucun réponse du serveur.")
 
     else :
