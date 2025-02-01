@@ -9,7 +9,7 @@ class JellyfinBot(commands.Bot):
     def __init__(self, jellyfin_url, api_key):
         intents = discord.Intents.default()
         intents.message_content = True
-        super().__init__(command_prefix='!', intents=intents)
+        super().__init__(command_prefix='/', intents=intents)
         
         self.jellyfin_url = jellyfin_url
         self.api_key = api_key
@@ -41,7 +41,6 @@ class JellyfinBot(commands.Bot):
         except Exception as e:
             print(f"Erreur lors de la vérification Jellyfin : {e}")
 
-
     # Vérifie le statut du serveur
     def check_server_status(self):
         try:
@@ -53,9 +52,9 @@ class JellyfinBot(commands.Bot):
     async def get_new_episodes(self):
 
         headers = {'X-Emby-Token': self.api_key}
-        response = requests.get(f"{self.jellyfin_url}/Users/277241eb1aca499ebb408bce16393bea/Items/Latest", headers=headers)
+        response = requests.get(f"{self.jellyfin_url}/Users/{ADMIN_USER_ID}/Items/Latest", headers=headers)
 
-        resultat = response.json()
+        resultat = await response.json()
 
         if resultat.success :
             episodes = resultat.get('Items', [])
