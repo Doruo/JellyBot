@@ -42,15 +42,13 @@ class JellyfinBot(commands.Bot):
             print(f"Erreur lors de la vérification Jellyfin : {e}")
 
 
-    # Logique pour vérifier le statut du serveur
-    # Peut utiliser un ping, une requête API, ou un fichier de log
+    # Vérifie le statut du serveur
     def check_server_status(self):
         try:
             response = requests.get(f"{self.jellyfin_url}/System/Ping", headers={'X-Emby-Token': self.api_key},timeout=5)
             return 'started' if response.status_code == 200 else 'stopped'
         except requests.exceptions.RequestException:
             return 'stopped'
-
 
     async def get_new_episodes(self):
 
@@ -97,10 +95,8 @@ JELLYFIN_URL = os.getenv('JELLYFIN_URL')
 # ID du canal Discord utilisé par le bot
 DISCORD_CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 JELLYFIN_API_KEY = os.getenv('JELLYFIN_API_KEY')
-JELLYFIN_USER_ID = os.getenv('JELLYFIN_USER_ID')
-
-#Admin userID (to find it : go to YOUR jellyfin website as admin > Left Panel > Users > your user, and copy the userId from the url)
-ADMIN_USERID = os.getenv('ADMIN_USERID')
+# Admin user ID
+ADMIN_USER_ID = os.getenv('ADMIN_USER_ID')
 
 bot = JellyfinBot(JELLYFIN_URL, JELLYFIN_API_KEY)
 

@@ -1,12 +1,16 @@
 # JellyBot - Jellyfin Discord Bot
 
-Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses nouveaux contenus. [Jellyfin](https://jellyfin.org/) est un serveur multimedia open source que vous pouvez hébergez vous-même ! 
+Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses nouveaux contenus. 
+[Jellyfin](https://jellyfin.org/) est un serveur multimedia open source que vous pouvez hébergez vous-même ! 
 
 ## Requis
 
-- python3
-- pip3
-- Un compte administrateur sur un serveur Jellyfin
+- [python](https://www.python.org/)
+- [pip](https://pypi.org/project/pip/)
+- [discord.py](https://discordpy.readthedocs.io/en/stable/)
+- [requests - PyPI](https://pypi.org/project/requests/)
+- Un accès administrateur à un serveur Jellyfin.
+- Une clé API sur ce serveur.
 
 ## Sommaire
 - [Fonctionnalités](#fonctionnalités)
@@ -60,12 +64,13 @@ DISCORD_TOKEN=votre_token
 JELLYFIN_API_KEY=votre_key
 JELLYFIN_URL=votre_url
 DISCORD_CHANNEL_ID=votre_channel
-JELLYFIN_USER_ID=votre_user_id
+ADMIN_USER_ID=votre_admin_user_id
 ```
+To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
 4. Lancer le bot
 ```bash
-python jellybot.py
+python3 jellybot.py
 ```
 
 ## Configuration Discord
@@ -89,16 +94,11 @@ python jellybot.py
 2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
 3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
 
-## Bibliothèques
-
-- [discord.py](https://discordpy.readthedocs.io/en/stable/)
-- [requests - PyPI](https://pypi.org/project/requests/)
-
 ## Annexes
 
 - [Jellyfin - The Free Software Media System](https://jellyfin.org/)
 
 ## Contributeurs
 
-- Marc Haye, contributeur principal.
+- Marc Haye, structure et fonctionnement du code.
 - Yann Bodiguel, pour la configuration de python et de l'environnement d'execution local.
