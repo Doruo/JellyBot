@@ -109,7 +109,7 @@ Sur Linux :
 3. Copier cette clé dans votre fichier .env (JELLYFIN_API_KEY)
 4. Ajouter l'URL de votre serveur dans .env (JELLYFIN_URL)
 
-## Annexes
+# Annexes
 
 - [Jellyfin - The Free Software Media System](https://jellyfin.org/)
 - [Jellyfin Documentation](https://jellyfin.org/docs/)
