@@ -1,52 +1,41 @@
-import os
-from dotenv import load_dotenv
+
 from src.bot import JellyfinBot
+from config.globals import GlobalConfig
 
-# /-/-/-/-/ MAIN /-/-/-/-/
+print("Validating global config...")
 
-load_dotenv()
-# Configuration
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-JELLYFIN_URL = os.getenv('JELLYFIN_URL')
-# ID du canal Discord utilisé par le bot
-DISCORD_CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
-JELLYFIN_API_KEY = os.getenv('JELLYFIN_API_KEY')
-# Admin user ID
-ADMIN_USER_ID = os.getenv('ADMIN_USER_ID')
+GlobalConfig.validate_config(GlobalConfig)
 
-bot = JellyfinBot(JELLYFIN_URL, JELLYFIN_API_KEY)
+print("Importing global values...")
 
-@bot.event
-async def on_ready():
-    print(f'Bot connecté : {bot.user}')
+# Jellyfin
+JELLYFIN_HOST = GlobalConfig.JELLYFIN_HOST
+JELLYFIN_PORT = GlobalConfig.JELLYFIN_PORT
+JELLYFIN_API_KEY = GlobalConfig.JELLYFIN_API_KEY
+# Admin User ID
+ADMIN_USER_ID = GlobalConfig.ADMIN_USER_ID
+# DISCORD
+DISCORD_CHANNEL_ID = GlobalConfig.DISCORD_CHANNEL_ID
+DISCORD_TOKEN = GlobalConfig.DISCORD_TOKEN
 
-# /-/-/-/-/ GESTION DES COMMANDES /-/-/-/-/
+print("Starting bot...")
 
-## COMMANDE: STATUS
-@bot.command(name="status")
-async def status(ctx):
+bot = JellyfinBot(f'{JELLYFIN_HOST}:{JELLYFIN_PORT}', JELLYFIN_API_KEY, ADMIN_USER_ID,DISCORD_CHANNEL_ID)
 
-    server_status = bot.check_server_status()
+print("Binding discord commands...")
 
-    server_status_msg = "en marche" if server_status == 'started' else "éteind"
-    server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"
+# /-/-/-/-/ COMMANDS /-/-/-/-/
 
-    await ctx.send(f"{server_status_color} ~ Server {server_status_msg} !")
+@bot.command(name="state")
+async def state(ctx):
+    await bot.state(ctx)
 
-## COMMANDE: NEW
-@bot.command(name="new")
-async def new (ctx) :
+@bot.command(name="latest")
+async def latest(ctx):
+    await bot.latest(ctx)
 
-    new_episodes = await bot.get_new_episodes()
+# /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
-    if not new_episodes:
-        await ctx.send("Aucun réponse du serveur.")
-
-    else :
-        await ctx.send("Nouveaux épisodes disponibles: ")
-        for episode in new_episodes :
-            await ctx.send(f"{episode['Name']} - {episode['SeriesName']}")
-
-# /-/-/-/-/-----------------------/-/-/-/-/
+print("Connecting to Discord...")
 
 bot.run(DISCORD_TOKEN)

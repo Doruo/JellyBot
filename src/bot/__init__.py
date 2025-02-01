@@ -1,4 +1,4 @@
 
-from .jellybot import JellyfinBot
+from .bot import JellyfinBot
 
-__all__ =  ['jellybot']
+__all__ =  ['JellyfinBot']

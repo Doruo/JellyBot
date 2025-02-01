@@ -1,8 +1,9 @@
-from typing import Final
 import os
 from dotenv import load_dotenv
+from typing import Final
 
 class GlobalConfig:
+
     load_dotenv()
 
     # DISCORD
@@ -18,7 +19,7 @@ class GlobalConfig:
     def __init__(self):
         raise RuntimeError("Cette classe ne doit pas être instanciée")
 
-    @classmethod
+    @staticmethod
     def validate_config(cls):
         required_vars = ['DISCORD_TOKEN','DISCORD_CHANNEL_ID','JELLYFIN_HOST','JELLYFIN_PORT']
         for var in required_vars:

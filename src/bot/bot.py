@@ -1,88 +1,85 @@
 import discord
 import requests
 from discord.ext import commands, tasks
-from dotenv import load_dotenv
-import os
-
 
 class JellyfinBot(commands.Bot):
 
-    def __init__(self, jellyfin_url, api_key):
+    def __init__(self, jellyfin_url, api_key, admin_user_key,discord_channel_id):
+
         intents = discord.Intents.default()
         intents.message_content = True
+
         super().__init__(command_prefix='/', intents=intents)
 
-        self.jellyfin_url = jellyfin_url
+        self.server_url = jellyfin_url
         self.api_key = api_key
-        self.last_episodes = set()
+        self.admin_user_key = admin_user_key
+        self.discord_channel_id = discord_channel_id
 
-    async def setup_hook(self):
-        self.check_jellyfin.start()
+        self.last_items = set()
 
-    def cog_unload(self):
-        self.check_jellyfin.cancel()
-
-    async def show_jellyfin_status(self, server_status):
-        server_status_color = ":green_circle:" if server_status == 'started' else ":red_circle:"
-        await self.send_server_notification(f"Status serveur: {server_status} {server_status_color}")
-
-    @tasks.loop(minutes=15)
-    async def check_jellyfin(self):
-        try:
-            # Vérifier le statut du serveur
-            server_status = self.check_server_status()
-            await self.show_jellyfin_status(server_status)
-
-            # Vérification nouveaux épisodes
-            new_episodes = await self.get_new_episodes()
-
-            for episode in new_episodes:
-                await self.send_episode_notification(episode)
-
-        except Exception as e:
-            print(f"Erreur lors de la vérification Jellyfin : {e}")
+    async def on_ready(self):
+        print(f'Bot connected as : {self.user}')
 
     # Vérifie le statut du serveur
     def check_server_status(self):
         try:
-            response = requests.get(f"{self.jellyfin_url}/System/Ping", headers={'X-Emby-Token': self.api_key},
-                                    timeout=5)
+            response = requests.get(f"{self.server_url}/System/Ping", headers={'X-Emby-Token': self.api_key},timeout=5)
             return 'started' if response.status_code == 200 else 'stopped'
         except requests.exceptions.RequestException:
             return 'stopped'
 
-    async def get_new_episodes(self):
+    async def get_latest_items(self):
 
         headers = {'X-Emby-Token': self.api_key}
-        response = requests.get(f"{self.jellyfin_url}/Users/{ADMIN_USER_ID}/Items/Latest", headers=headers)
+        response = requests.get(f"{self.server_url}/Users/{self.admin_user_key}/Items/Latest", headers=headers)
+        resultat = response.json()
 
-        resultat = await response.json()
+        if resultat is not None:
 
-        if resultat.success:
-            episodes = resultat.get('Items', [])
-
-            new_episodes = [
-                ep for ep in episodes
-                if ep['Id'] not in self.last_episodes
+            new_items = [
+                item for item in resultat
+                if item['Name'] not in self.last_items
             ]
 
-            self.last_episodes.update(ep['Id'] for ep in new_episodes)
-            return new_episodes
+            self.last_items.update(item['Name'] for item in new_items)
+            return new_items
         else:
             return False
 
-    # Envoie une notification par message au canal du serveur discord
-    async def send_server_notification(self, message):
-        channel = self.get_channel(DISCORD_CHANNEL_ID)
-        await channel.send(message)
+    # /-/-/-/-/ GESTION DES COMMANDES /-/-/-/-/
 
-    # Envoie une notification concernant un nouvelle épisode au canal du serveur discord
-    async def send_episode_notification(self, episode):
-        channel = self.get_channel(DISCORD_CHANNEL_ID)
+    ## COMMANDE: STATUS
+    async def state(self, ctx):
 
-        embed = discord.Embed(
-            title="Nouvel épisode disponible !",
-            description=f"{episode['Name']} - {episode['SeriesName']}",
-            color=discord.Color.green()
-        )
-        await channel.send(embed=embed)
+        server_status = self.check_server_status()
+        server_status_color = "🟢" if server_status == 'started' else "🔴"
+
+        await ctx.send(f"Server state : {server_status} ! {server_status_color}")
+
+    ## COMMANDE: LATEST
+    async def latest(self, ctx) :
+
+        new_items = await self.get_latest_items()
+
+        if not new_items:
+            await ctx.send("No response from server.")
+
+        else :
+            msg = "# *New episodes !* \n/-------------------------/\n"
+            for item in new_items :
+
+                item_name = item["Name"]
+                item_type = item["Type"]
+
+                msg += (
+                    f"## ***{item_name}***\n"
+                    f"### - {item_type}\n"
+                        )
+
+                if item_type == "Series":
+                    item_chil_cound = item["ChildCount"]
+                    msg += f"### - {item_chil_cound} episodes\n"
+
+                msg += "\n/-------------------------/\n"
+            await ctx.send(msg)
