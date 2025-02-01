@@ -1,6 +1,14 @@
 # JellyBot - Jellyfin Discord Bot
 
-Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses nouveaux contenus.
+Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses nouveaux contenus. [Jellyfin](https://jellyfin.org/) est un serveur multimedia open source que vous pouvez hébergez vous-même ! 
+
+## Sommaire
+- [Fonctionnalités](#fonctionnalités)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Discord](#configuration-discord)
+  - [Jellyfin](#configuration-jellyfin)
+  - [Channel Discord](#configuration-du-channel-discord)
 
 ## Fonctionnalités
 
@@ -73,15 +81,16 @@ python jellybot.py
 2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
 3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
 
-## Contributeurs
-
-- Marc Haye, contributeur principale.
-- Yann Bodiguel, pour la configuration de python et de l'environnement d'execution local.
-
-## Bibliothèques utilisés
-
-- [Jellyfin - The Free Software Media System ](https://jellyfin.org/)
+## Bibliothèques
 
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
-
 - [requests - PyPI](https://pypi.org/project/requests/)
+
+## Annexes
+
+- [Jellyfin - The Free Software Media System](https://jellyfin.org/)
+
+## Contributeurs
+
+- Marc Haye, contributeur principal.
+- Yann Bodiguel, pour la configuration de python et de l'environnement d'execution local.
