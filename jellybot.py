@@ -55,10 +55,9 @@ class JellyfinBot(commands.Bot):
     async def get_new_episodes(self):
 
         headers = {'X-Emby-Token': self.api_key}
-       
-        response = requests.get(f"{self.jellyfin_url}/Items/Latest", headers=headers)
+        response = requests.get(f"{self.jellyfin_url}/Users/277241eb1aca499ebb408bce16393bea/Items/Latest", headers=headers)
 
-        resultat = await response.json();
+        resultat = response.json()
 
         if resultat.success :
             episodes = resultat.get('Items', [])
@@ -98,6 +97,9 @@ JELLYFIN_URL = os.getenv('JELLYFIN_URL')
 # ID du canal Discord utilisé par le bot
 DISCORD_CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 JELLYFIN_API_KEY = os.getenv('JELLYFIN_API_KEY')
+
+#Admin userID (to find it : go to YOUR jellyfin website as admin > Left Panel > Users > your user, and copy the userId from the url)
+ADMIN_USERID = os.getenv('ADMIN_USERID')
 
 bot = JellyfinBot(JELLYFIN_URL, JELLYFIN_API_KEY)
 
