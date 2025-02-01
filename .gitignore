@@ -1,5 +1,5 @@
 # Envirronement local
-.env
+config/.env
 
 # Cache python
 __pycache__/
