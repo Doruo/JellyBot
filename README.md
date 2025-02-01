@@ -2,6 +2,12 @@
 
 Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses nouveaux contenus. [Jellyfin](https://jellyfin.org/) est un serveur multimedia open source que vous pouvez hébergez vous-même ! 
 
+## Requis
+
+- python3
+- pip3
+- Un compte administrateur sur un serveur Jellyfin
+
 ## Sommaire
 - [Fonctionnalités](#fonctionnalités)
 - [Installation](#installation)
@@ -23,7 +29,8 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 ## Idées d'ajouts futures
 
 - Envoyer des recommendations au serveur
-- Traduire en anglais la documentation et le README
+- Traduire en anglais la documentation
+- Améliorer et agrandir le README
 
 ## Installation
 
@@ -53,6 +60,7 @@ DISCORD_TOKEN=votre_token
 JELLYFIN_API_KEY=votre_key
 JELLYFIN_URL=votre_url
 DISCORD_CHANNEL_ID=votre_channel
+JELLYFIN_USER_ID=votre_user_id
 ```
 
 4. Lancer le bot
