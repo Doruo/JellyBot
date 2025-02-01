@@ -29,8 +29,8 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 
 ## Commandes Disponibles
 
-- `/status` - Notifie l'état du serveur
-- `/recents` - Notifie les nouveaux épisodes mis en ligne
+- `/state` - Notifie l'état du serveur
+- `/latest` - Notifie les nouveaux épisodes mis en ligne
 
 ## Idées d'ajouts futures
 
@@ -38,7 +38,7 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 - Traduire en anglais la documentation
 - Améliorer et agrandir le README
 
-## Installation
+# Installation
 
 1. Cloner le repo
 
@@ -70,12 +70,23 @@ ADMIN_USER_ID=votre_admin_user_id
 ```
 To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
+Vous pouvez retrouvez ces informations dans la section Configuration.
+
 4. Lancer le bot
+
+Sur Windows (il faut d'abord activer l'uilisation de script powershell) :
+```powershell
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ./run.ps1
+```
+Sur Linux :
 ```bash
-python3 jellybot.py
+  ./run.bash
 ```
 
-## Configuration Discord
+# Configuration
+
+## Discord
 
 1. Créer une application : Discord Developer Portal
 2. Dans l'onglet "Bot", créer un bot
@@ -83,18 +94,19 @@ python3 jellybot.py
 4. Copier ce token et le coller dans votre fichier .env (DISCORD_TOKEN)
 5. Inviter le bot sur votre serveur en utilisant le lien d'invitation généré dans l'onglet "OAuth2"
 
-## Configuration Serveur Jellyfin
+## Channel Discord
+
+1. Activer le mode développeur dans Discord (Paramètres > Avancés)
+2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
+3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
+
+
+## Serveur Jellyfin
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
 3. Copier cette clé dans votre fichier .env (JELLYFIN_API_KEY)
 4. Ajouter l'URL de votre serveur dans .env (JELLYFIN_URL)
-
-## Configuration du Channel Discord
-
-1. Activer le mode développeur dans Discord (Paramètres > Avancés)
-2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
-3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
 
 ## Annexes
 
