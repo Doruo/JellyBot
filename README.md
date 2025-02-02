@@ -70,9 +70,8 @@ JELLYFIN_URL=votre_url
 DISCORD_CHANNEL_ID=votre_channel
 ADMIN_USER_ID=votre_admin_user_id
 ```
-To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
-Vous pouvez retrouvez ces informations dans la section Configuration.
+Il faut remplacer ces valeurs par les votre. Pour cela, vous pouvez retrouvez ces informations dans la section Configuration.
 
 4. Lancer le bot
 
@@ -117,6 +116,7 @@ Sur Linux :
 2. Générer une nouvelle clé API
 3. Copier cette clé dans votre fichier .env (JELLYFIN_API_KEY)
 4. Ajouter l'URL de votre serveur dans .env (JELLYFIN_URL)
+5. To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
 # Annexes
 
