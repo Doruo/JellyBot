@@ -98,7 +98,7 @@ Sur Linux :
 
 ## Discord
 
-1. Créer une application : Discord Developer Portal
+1. Créer une application sur [Discord Developer Portal](https://discord.com/developers)
 2. Dans l'onglet "Bot", créer un bot
 3. Cliquer sur "Reset Token" pour générer un nouveau token
 4. Copier ce token et le coller dans votre fichier .env (DISCORD_TOKEN)
