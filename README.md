@@ -61,7 +61,7 @@ git clone https://github.com/Doruo/JellyBot.git
 pip install discord.py requests python-dotenv
 ```
 
-3. Créer un fichier `.env` à la racine du projet et ajouter ces informations:
+3. Créer un fichier `.env` dans le dossier config/ et ajouter ces informations:
 ```
 DISCORD_TOKEN=votre_token
 JELLYFIN_API_KEY=votre_key
