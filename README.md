@@ -78,7 +78,7 @@ Vous pouvez retrouvez ces informations dans la section Configuration.
 
 Sur Windows 
 
-Ul faut d'abord activer l'uilisation de script powershell :
+Il faut d'abord activer l'uilisation de script powershell :
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
