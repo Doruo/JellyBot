@@ -81,17 +81,17 @@ Sur Windows
 Ul faut d'abord activer l'uilisation de script powershell :
 
 ```powershell
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
-Puis :
+Puis executer le script de lancement :
 
 ```powershell
-    ./run.ps1
+./run.ps1
 ```
 
 Sur Linux :
 ```bash
-  ./run.bash
+./run.bash
 ```
 
 # Configuration
