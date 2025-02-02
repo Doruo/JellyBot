@@ -76,11 +76,19 @@ Vous pouvez retrouvez ces informations dans la section Configuration.
 
 4. Lancer le bot
 
-Sur Windows (il faut d'abord activer l'uilisation de script powershell) :
+Sur Windows 
+
+Ul faut d'abord activer l'uilisation de script powershell :
+
 ```powershell
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+Puis :
+
+```powershell
     ./run.ps1
 ```
+
 Sur Linux :
 ```bash
   ./run.bash
