@@ -36,7 +36,7 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 ## Idées d'ajouts futures
 
 - Envoyer des recommendations au serveur
-- Réaliser un script intuitif automatisant la configuration du bot via .env
+- Réaliser un script intuitif automatisant la génération du .env selon votre configuration du bot
 - Traduire en anglais la documentation
 - Améliorer et agrandir le README
 
