@@ -6,6 +6,9 @@ class GlobalConfig:
 
     load_dotenv()
 
+    # APPLICATION
+    APPLICATION_ID: Final = os.getenv('APPLICATION_ID')
+    
     # DISCORD
     DISCORD_TOKEN: Final = os.getenv('DISCORD_TOKEN')
     DISCORD_CHANNEL_ID: Final = os.getenv('DISCORD_CHANNEL_ID')
