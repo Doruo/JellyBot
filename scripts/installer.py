@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 
-import json
 import os
-import subprocess
-import platform
-import sys
-from time import sleep
 
 # Confirm Prompt
 def confirm(message: str = "Continue", default: bool | None = None, direct: bool | None = None) -> bool:
@@ -32,8 +27,6 @@ def confirm(message: str = "Continue", default: bool | None = None, direct: bool
 
 # INSTALLATION START
 
-path = ""
-
 # OS CONFIG DETECTION
 """
     if platform.system() != "Windows":
@@ -53,10 +46,12 @@ path = ""
 
 print("""
 Welcome to the "JellyBot" Jellyfin Discord Bot installer
-[https://github.com/Doruo/JellyBot#installation]
+More docs at: [https://github.com/Doruo/JellyBot#installation]
 """)
 
 print("----------Jellyfin----------")
+
+print("bash")
 
 protocol = input("http/https: ")
 host = input("hostname: ")
@@ -86,7 +81,8 @@ app_id = input("Application ID: ")
 discord_token = input("Discord Token: ")
 discord_channel_id = input("Discord Channel ID: ")
 
-f = open("../config/.env", "w")
+path = os.getcwd()
+f = open(f"{path}\.env", "w")
 
 f.write("# DISCORD\n")
 f.write(f"APPLICATION_ID={app_id}\n")
