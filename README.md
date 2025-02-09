@@ -36,9 +36,8 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 ## Idées d'ajouts futures
 
 - Envoyer des recommendations au serveur
-- Réaliser un script intuitif automatisant la génération du .env selon votre configuration du bot
 - Traduire en anglais la documentation
-- Améliorer et agrandir le README
+- Améliorer comment trouvers les infos de configuration dans le README
 
 # Installation
 
@@ -119,8 +118,8 @@ Sur Linux :
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
-3. Copier cette clé dans votre fichier .env (JELLYFIN_API_KEY)
-4. Ajouter l'URL de votre serveur dans .env (JELLYFIN_URL)
+3. Copier cette clé dans votre script d'installation (JELLYFIN_API_KEY)
+4. Ajouter l'URL de votre serveur dans ce script d'installation .env (JELLYFIN_URL)
 5. To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
 # Annexes
