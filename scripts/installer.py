@@ -26,7 +26,7 @@ def confirm(message: str = "Continue", default: bool | None = None, direct: bool
     return output
 
 # Input environnement
-def get_env_vars_input():
+def get_env_varss_input():
     
     print("""
     Welcome to the JellyBot - Jellyfin Discord Bot installer
@@ -42,8 +42,7 @@ def get_env_vars_input():
 
     print(f"Jellyfin Server url: {url}")
 
-    print("Enter a single username or enter multiple usernames in a comma separated list.")
-    username = input("Username[s]: ").split(",")
+    username = input("Username: ")
 
     api_key = input(f"API key [Create one here: {url}/web/index.html#!/apikeys.html]: ")
 
@@ -56,12 +55,23 @@ def get_env_vars_input():
     discord_token = input("Discord Token: ")
     discord_channel_id = input("Discord Channel ID: ")
 
-    env_var = {protocol,host,port,url,username,api_key,admin_user_id,app_id,discord_token,discord_channel_id}
-    
-    return env_var
+    env_vars = {
+        'PROTOCOL': protocol,
+        'HOST': host,
+        'PORT': port,
+        'URL': url,
+        'USERNAME': username,
+        'API_KEY': api_key,
+        'ADMIN_USER_ID': admin_user_id,
+        'APP_ID': app_id,
+        'DISCORD_TOKEN': discord_token,
+        'DISCORD_CHANNEL_ID': discord_channel_id
+    }
+
+    return env_vars
 
 # Configure environnement from parameters
-def create_env_file(env_var: set):
+def create_env_file(env_vars: set):
     
     # Get the directory where the current script is located (scripts folder)
     current_script_path = Path(__file__).resolve()
@@ -83,26 +93,26 @@ def create_env_file(env_var: set):
             file.write("# JELLYFIN\n")
 
             # Jellyfin server url
-            file.write(f"JELLYFIN_PROTOCOL={env_var['protocol']}\n")
-            file.write(f"JELLYFIN_HOST={env_var['host']}\n")
-            file.write(f"JELLYFIN_PORT={env_var['port']}\n")
+            file.write(f"JELLYFIN_PROTOCOL={env_vars['PROTOCOL']}\n")
+            file.write(f"JELLYFIN_HOST={env_vars['HOST']}\n")
+            file.write(f"JELLYFIN_PORT={env_vars['PORT']}\n")
 
             # Jellyfin API
-            file.write(f"JELLYFIN_API_KEY={env_var['api_key']}\n")
+            file.write(f"JELLYFIN_API_KEY={env_vars['API_KEY']}\n")
 
             # Jellyfin admin user
-            file.write(f"ADMIN_USER_ID={env_var['admin_user_id']}\n")
-            file.write(f"ADMIN_USERNAME={env_var['username']}\n")
+            file.write(f"ADMIN_USER_ID={env_vars['ADMIN_USER_ID']}\n")
+            file.write(f"ADMIN_USERNAME={env_vars['USERNAME']}\n")
 
             # Discord environment variables
             file.write("# DISCORD\n")
 
             # Discord Bot Application
-            file.write(f"APPLICATION_ID={env_var['app_id']}\n")
-            file.write(f"DISCORD_TOKEN={env_var['discord_token']}\n")
+            file.write(f"APPLICATION_ID={env_vars['APP_ID']}\n")
+            file.write(f"DISCORD_TOKEN={env_vars['DISCORD_TOKEN']}\n")
 
             # Discord Text Channel ID
-            file.write(f"DISCORD_CHANNEL_ID={env_var['discord_channel_id']}\n")
+            file.write(f"DISCORD_CHANNEL_ID={env_vars['DISCORD_CHANNEL_ID']}\n")
         
         print(f"Successfully created .env file at: {env_path}")
         
@@ -110,8 +120,8 @@ def create_env_file(env_var: set):
         print(f"Error creating .env file: {e}")
 
 def configure():
-    env_var = get_env_vars_input()
-    create_env_file(env_var)
+    env_vars = get_env_varss_input()
+    create_env_file(env_vars)
 
 def install():
     configure()
