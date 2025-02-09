@@ -86,7 +86,7 @@ app_id = input("Application ID: ")
 discord_token = input("Discord Token: ")
 discord_channel_id = input("Discord Channel ID: ")
 
-f = open("../config/.env", "a")
+f = open("../config/.env", "w")
 
 f.write("# DISCORD\n")
 f.write(f"APPLICATION_ID={app_id}\n")
