@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+from pathlib import Path
 
 # Confirm Prompt
 def confirm(message: str = "Continue", default: bool | None = None, direct: bool | None = None) -> bool:
@@ -80,19 +81,32 @@ print("----------Discord----------")
 app_id = input("Application ID: ")
 discord_token = input("Discord Token: ")
 discord_channel_id = input("Discord Channel ID: ")
+   
+# Get the directory where the current script is located (scripts folder)
+current_script_path = Path(__file__).resolve()
+scripts_dir = current_script_path.parent
+    
+# Create .env file directly in scripts directory
+path = scripts_dir / ".env"
 
-path = os.getcwd()
-f = open(f"{path}\.env", "w")
+# Try creating .env with environment variables given in the correct folder
+try:
+    with open(path, "w") as file:
+        
+        # write environment variables
+        file.write("# DISCORD\n")
+        file.write(f"APPLICATION_ID={app_id}\n")
+        file.write(f"DISCORD_TOKEN={discord_token}\n")
+        file.write(f"DISCORD_CHANNEL_ID={discord_channel_id}\n")
 
-f.write("# DISCORD\n")
-f.write(f"APPLICATION_ID={app_id}\n")
-f.write(f"DISCORD_TOKEN={discord_token}\n")
-f.write(f"DISCORD_CHANNEL_ID={discord_channel_id}\n")
-
-f.write("# JELLYFIN\n")
-f.write(f"JELLYFIN_PROTOCOL={protocol}\n")
-f.write(f"JELLYFIN_HOST={host}\n")
-f.write(f"JELLYFIN_PORT={port}\n")
-f.write(f"JELLYFIN_API_KEY={app_id}\n")
-f.write(f"ADMIN_USER_ID={app_id}\n")
-f.close()
+        file.write("# JELLYFIN\n")
+        file.write(f"JELLYFIN_PROTOCOL={protocol}\n")
+        file.write(f"JELLYFIN_HOST={host}\n")
+        file.write(f"JELLYFIN_PORT={port}\n")
+        file.write(f"JELLYFIN_API_KEY={app_id}\n")
+        file.write(f"ADMIN_USER_ID={app_id}\n")
+    
+    print(f"Successfully created .env file at: {path}")
+    
+except Exception as e:
+    print(f"Error creating .env file: {e}")
