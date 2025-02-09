@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import subprocess
 from pathlib import Path
 
 # Confirm Prompt
@@ -115,9 +116,20 @@ def create_env_file(env_vars: set):
             file.write(f"DISCORD_CHANNEL_ID={env_vars['DISCORD_CHANNEL_ID']}\n")
         
         print(f"Successfully created .env file at: {env_path}")
-        
+
+        start_bot = confirm(
+            message="Do you want to start the bot ?", default=False, direct=True
+        )
+
+        if start_bot == True:
+            start_bot()
+
+
     except Exception as e:
         print(f"Error creating .env file: {e}")
+
+def start_bot():
+    subprocess.run["python3","../scripts/run.bash"]
 
 def configure():
     env_vars = get_env_varss_input()
