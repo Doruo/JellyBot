@@ -4,13 +4,20 @@ from discord.ext import commands, tasks
 
 class JellyfinBot(commands.Bot):
 
-    def __init__(self, server_host,server_port, api_key, admin_user_key, discord_channel_id, application_id):
+    def __init__(
+            self, 
+            server_protocol,server_host,server_port, 
+            api_key, admin_user_key, 
+            discord_channel_id, 
+            application_id
+        ):
 
         intents = discord.Intents.default()
         intents.message_content = True
 
         super().__init__(command_prefix='/', intents=intents)
 
+        self.server_protocol = server_protocol
         self.server_host = server_host
         self.server_port = server_port
         self.api_key = api_key
@@ -65,7 +72,7 @@ class JellyfinBot(commands.Bot):
     # Ping server to check if  it's running
     def check_server_status(self):
 
-        server_url = f'{self.server_host}:{self.server_port}'
+        server_url = f'{self.server_protocol}://{self.server_host}:{self.server_port}'
         try:
             response = requests.get(f"{server_url}/System/Ping", headers={'X-Emby-Token': self.api_key},timeout=4)
 
@@ -82,8 +89,10 @@ class JellyfinBot(commands.Bot):
 
     async def get_latest_items(self):
 
+        server_url = f'{self.server_protocol}://{self.server_host}:{self.server_port}'
+
         headers = {'X-Emby-Token': self.api_key}
-        response = requests.get(f"{self.server_host}:{self.server_port}//Users/{self.admin_user_key}/Items/Latest", headers=headers)
+        response = requests.get(f"{server_url}//Users/{self.admin_user_key}/Items/Latest", headers=headers)
         resultat = response.json()
 
         if resultat is not None:

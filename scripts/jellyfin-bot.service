@@ -1,0 +1,13 @@
+[Unit]
+Description=Jellyfin-Bot Service
+Documentation=https://github.com/Doruo/JellyBot
+After=network.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/path/to/JellyBot/executable -c /path/to/JellyBot/config/.env
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

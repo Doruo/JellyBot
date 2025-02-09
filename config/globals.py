@@ -6,14 +6,13 @@ class GlobalConfig:
 
     load_dotenv()
 
-    # APPLICATION
-    APPLICATION_ID: Final = os.getenv('APPLICATION_ID')
-    
     # DISCORD
+    APPLICATION_ID: Final = os.getenv('APPLICATION_ID')
     DISCORD_TOKEN: Final = os.getenv('DISCORD_TOKEN')
     DISCORD_CHANNEL_ID: Final = os.getenv('DISCORD_CHANNEL_ID')
 
     # JELLYFIN
+    JELLYFIN_PROTOCOL: Final = os.getenv('JELLYFIN_PROTOCOL', 'http')
     JELLYFIN_HOST: Final = os.getenv('JELLYFIN_HOST', 'localhost')
     JELLYFIN_PORT: Final = os.getenv('JELLYFIN_PORT', '8096')
     JELLYFIN_API_KEY: Final = os.getenv('JELLYFIN_API_KEY')
