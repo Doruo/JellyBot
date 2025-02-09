@@ -56,10 +56,7 @@ def get_env_vars_input():
     discord_token = input("Discord Token: ")
     discord_channel_id = input("Discord Channel ID: ")
 
-    env_var = {
-        protocol,host,port,url,username,api_key,admin_user_id,
-        app_id,discord_token,discord_channel_id
-    }
+    env_var = {protocol,host,port,url,username,api_key,admin_user_id,app_id,discord_token,discord_channel_id}
     
     return env_var
 
