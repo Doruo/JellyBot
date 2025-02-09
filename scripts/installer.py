@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import os
 from pathlib import Path
 
 # Confirm Prompt
@@ -34,7 +33,7 @@ def get_env_vars_input():
     More docs at: [https://github.com/Doruo/JellyBot#installation]
     """)
 
-    print("----------Jellyfin----------")
+    print("\n----------Jellyfin----------\n")
 
     protocol = input("Protocol (http/https): ")
     host = input("Hostame: ")
@@ -51,16 +50,16 @@ def get_env_vars_input():
     print ("To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url")
     admin_user_id = input("Admin User ID: ")
 
-    print("----------Discord----------")
+    print("\n----------Discord----------\n")
 
     app_id = input("Application ID: ")
     discord_token = input("Discord Token: ")
     discord_channel_id = input("Discord Channel ID: ")
 
-    env_var = set(
+    env_var = {
         protocol,host,port,url,username,api_key,admin_user_id,
         app_id,discord_token,discord_channel_id
-        )
+    }
     
     return env_var
 
@@ -113,8 +112,11 @@ def create_env_file(env_var: set):
     except Exception as e:
         print(f"Error creating .env file: {e}")
 
-def install() :
+def configure():
     env_var = get_env_vars_input()
     create_env_file(env_var)
 
+def install():
+    configure()
+    
 install()
