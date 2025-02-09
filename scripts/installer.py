@@ -117,11 +117,11 @@ def create_env_file(env_vars: set):
         
         print(f"Successfully created .env file at: {env_path}")
 
-        start_bot = confirm(
-            message="Do you want to start the bot ?", default=False, direct=True
+        bot_start_wanted = confirm(
+            message="Do you want to start the bot ?", default=True, direct=True
         )
 
-        if start_bot == True:
+        if bot_start_wanted == True:
             start_bot()
 
 
