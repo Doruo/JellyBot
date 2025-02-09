@@ -62,21 +62,21 @@ git clone https://github.com/Doruo/JellyBot.git
 pip install discord.py requests python-dotenv
 ```
 
-3. Créer un fichier `.env` dans le dossier config/ et ajouter ces informations:
-```
-# APPLICATION
-APPLICATION_ID=your_app_id
-# DISCORD
-DISCORD_TOKEN='your_token'
-DISCORD_CHANNEL_ID=your_channel_id
-# JELLYFIN
-JELLYFIN_HOST='your_host'
-JELLYFIN_PORT='your_port'
-JELLYFIN_API_KEY='your_api_kei'
-ADMIN_USER_ID='your_admin_user_id'
+3. Ouvrer un terminal dans le dépot, et lancer l'installation:
+
+Sur Windows :
+
+```powershell
+./install/install.ps1
 ```
 
-Il faut remplacer ces valeurs par les votre. Pour cela, vous pouvez retrouvez ces informations dans la section Configuration.
+Sur Linux :
+```bash
+./install/install.bash
+```
+Cela vous ouvrira un script qui va automatiquement configurer l'application.
+Il faudra saisir plusieurs informations configuration qui vous sont confidentielles. 
+Pour cela, vous pouvez voir comment retrouvez ces informations dans la section Configuration.
 
 4. Lancer le bot
 
@@ -90,12 +90,12 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 Puis executer le script de lancement :
 
 ```powershell
-./run.ps1
+./scripts/run.ps1
 ```
 
 Sur Linux :
 ```bash
-./run.bash
+./scripts/run.bash
 ```
 
 # Configuration

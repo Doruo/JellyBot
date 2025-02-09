@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import subprocess
 from pathlib import Path
 
 # Confirm Prompt
@@ -129,7 +128,7 @@ def create_env_file(env_vars: set):
         print(f"Error creating .env file: {e}")
 
 def start_bot():
-    subprocess.run["python3","../scripts/run.bash"]
+    exec("python3 ../scripts/run.bash")
 
 def configure():
     env_vars = get_env_varss_input()
