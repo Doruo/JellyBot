@@ -1,5 +1,7 @@
 # Envirronement local
 config/.env
+.vscode
+*.vscode
 
 # Cache python
 __pycache__/

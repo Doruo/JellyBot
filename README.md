@@ -64,11 +64,16 @@ pip install discord.py requests python-dotenv
 
 3. Créer un fichier `.env` dans le dossier config/ et ajouter ces informations:
 ```
-DISCORD_TOKEN=votre_token
-JELLYFIN_API_KEY=votre_key
-JELLYFIN_URL=votre_url
-DISCORD_CHANNEL_ID=votre_channel
-ADMIN_USER_ID=votre_admin_user_id
+# APPLICATION
+APPLICATION_ID=your_app_id
+# DISCORD
+DISCORD_TOKEN='your_token'
+DISCORD_CHANNEL_ID=your_channel_id
+# JELLYFIN
+JELLYFIN_HOST='your_host'
+JELLYFIN_PORT='your_port'
+JELLYFIN_API_KEY='your_api_kei'
+ADMIN_USER_ID='your_admin_user_id'
 ```
 
 Il faut remplacer ces valeurs par les votre. Pour cela, vous pouvez retrouvez ces informations dans la section Configuration.
