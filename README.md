@@ -129,3 +129,4 @@ Sur Linux :
 - [Jellyfin - The Free Software Media System](https://jellyfin.org/)
 - [Jellyfin Documentation](https://jellyfin.org/docs/)
 - [Discord Developer Portal](https://discord.com/developers)
+- [discord.py - API Wrapper python library](https://discordpy.readthedocs.io/en/stable/)
