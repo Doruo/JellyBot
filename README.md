@@ -19,8 +19,8 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 - [Installation](#installation)
 - [Configuration](#configuration)
   - [Discord](#discord)
-  - [Channel Discord](#channel-discord)
-  - [Jellyfin](#jellyfin)
+  - [Channel ID Discord](#channel-id-discord)
+  - [Jellyfin - API Key & URL](#jellyfin-APIKey&URL)
 - [Annexes](#annexes)
 
 ## Fonctionnalités
@@ -115,7 +115,7 @@ Sur Linux :
 2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
 3. Le coller lors du script d'installation (Discord Channel ID)
 
-## Jellyfin - API Key et URL
+## Jellyfin - API Key & URL
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
