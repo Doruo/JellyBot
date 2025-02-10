@@ -106,27 +106,27 @@ Sur Linux :
 1. Créer une application sur [Discord Developer Portal](https://discord.com/developers)
 2. Dans l'onglet "Bot", créer un bot
 3. Cliquer sur "Reset Token" pour générer un nouveau token
-4. Copier ce token et le coller dans votre fichier .env (DISCORD_TOKEN)
+4. Copier ce token et le coller lors du script d'installation (Discord Token)
 5. Inviter le bot sur votre serveur en utilisant le lien d'invitation généré dans l'onglet "OAuth2"
 
-## Channel Discord
+## Channel ID Discord
 
 1. Activer le mode développeur dans Discord (Paramètres > Avancés)
 2. Faire clic droit sur le canal souhaité et "Copier l'identifiant"
-3. Coller cet ID dans votre fichier .env (DISCORD_CHANNEL_ID)
+3. Le coller lors du script d'installation (Discord Channel ID)
 
-
-## Jellyfin
+## Jellyfin - API Key et URL
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
-3. Copier cette clé dans votre script d'installation (JELLYFIN_API_KEY)
-4. Ajouter l'URL de votre serveur dans ce script d'installation .env (JELLYFIN_URL)
+3. Copier cette clé dans votre script d'installation (API Key)
+4. Ajouter l'URL de votre serveur lors du script d'installation (Hostname & Port)
 5. To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
+3. Le coller lors du script d'installation (Admin user ID)
 
 # Annexes
 
 - [Jellyfin - The Free Software Media System](https://jellyfin.org/)
 - [Jellyfin Documentation](https://jellyfin.org/docs/)
 - [Discord Developer Portal](https://discord.com/developers)
-- [discord.py - API Wrapper python library](https://discordpy.readthedocs.io/en/stable/)
+- [discord.py Documentation - API Wrapper python library](https://discordpy.readthedocs.io/en/stable/)
