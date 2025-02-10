@@ -26,17 +26,18 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 ## Fonctionnalités
 
 - Notification régulier de l'état du serveur
-- Notification de nouveaux épisodes mis en ligne 
+- Notification de nouveaux épisodes mis en ligne
+- Recevoir des recommendations des utilisateurs via le channel textuel
 
 ## Commandes Disponibles
 
 - `/state` - Notifie l'état du serveur
 - `/latest` - Notifie les nouveaux épisodes mis en ligne
+- `/suggest param1 param2 paramN` - Envoie des recommendations au serveur
 
 ## Idées d'ajouts futures
 
-- Envoyer des recommendations au serveur
-- Réaliser un script intuitif automatisant la génération du .env selon votre configuration du bot
+- Trouver des Idées d'ajouts futures (!)
 - Traduire en anglais la documentation
 - Améliorer et agrandir le README
 
