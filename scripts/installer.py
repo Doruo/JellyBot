@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import os
 from pathlib import Path
 
 # Confirm Prompt
@@ -73,8 +72,7 @@ def create_env_file(env_var: set):
         
     # Create config directory if it doesn't exist
     config_dir = project_root / "config"
-    config_dir.mkdir(exist_ok=True)
-
+    
     # Create .env file in config directory
     env_path = config_dir / ".env"
 

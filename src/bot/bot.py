@@ -1,6 +1,7 @@
 import discord
 import requests
 from discord.ext import commands, tasks
+from pathlib import Path
 
 class JellyfinBot(commands.Bot):
 
@@ -158,3 +159,44 @@ class JellyfinBot(commands.Bot):
                 await ctx.send(message)
         else:
             await ctx.send(message)
+
+    ## COMMAND: SUGGEST
+    async def suggest(self, ctx, *args: tuple):
+        try:
+        
+            # At least one suggestion given
+            if (args is not None) :
+
+                if len(args) == 0 :
+                    suggestions=""
+                else :
+                    # Parses given suggestions
+                    suggestions = '\n'+'\n'.join(args)+'\n'
+
+                # Number of suggestions
+                sugg_len = len(suggestions)
+
+                # Get the current directory path 
+                current_script_path = Path(__file__).resolve()
+                # Get the project root path
+                project_root = current_script_path.parent.parent.parent
+                    
+                # Create config directory if it doesn't exist
+                config_dir = project_root / "ressources/suggestions" 
+                config_dir.mkdir(exist_ok=True)
+
+                # Create suggestions file
+                env_path = config_dir / "suggestions.txt"
+
+                # Try to add suggestions in a suggestion.txt file
+                # Create file if it doesn't exist 
+                with open(env_path, "a") as file:
+                    file.write(suggestions)
+ 
+                await ctx.send(f"Numbers of suggestions sent: {sugg_len} \n Your suggestions: {suggestions}")
+
+            # No suggestions given
+            else :
+                await ctx.send(f"You just sent no suggestions, try adding arguments to command")
+        except Exception as e:
+            print(f"Error when trying to send suggestions to server : {e}")

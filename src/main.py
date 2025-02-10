@@ -27,12 +27,21 @@ print("Starting bot...")
 bot = JellyfinBot (JELLYFIN_PROTOCOL, JELLYFIN_HOST, JELLYFIN_PORT, JELLYFIN_API_KEY, ADMIN_USER_ID, DISCORD_CHANNEL_ID,APPLICATION_ID)
 
 print("Binding Discord commands...")
-@bot.command(name="state")
+
+ ## COMMAND: STATUS
+@bot.command()
 async def state(ctx):
     await bot.state(ctx)
-@bot.command(name="latest")
+
+ ## COMMAND: LATEST
+@bot.command()
 async def latest(ctx):
     await bot.latest(ctx)
+
+ ## COMMAND: SUGGEST
+@bot.command()
+async def suggest(ctx, *args):
+    await bot.suggest(ctx, *args)
 
 print("Connecting to Discord...")
 bot.run(DISCORD_TOKEN)

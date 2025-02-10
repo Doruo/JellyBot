@@ -12,3 +12,7 @@ __pycache__/
 # JetBrains
 *.idea
 /.idea
+
+# Jellyfin Media Suggestions
+*/suggestions
+suggestions.txt
