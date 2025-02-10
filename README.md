@@ -40,7 +40,7 @@ Bot discord qui notifie le statut d'un serveur multimédia Jellyfin et de ses no
 - Trouver des Idées d'ajouts futures (!)
 - Traduire en anglais la documentation
 - Améliorer et agrandir le README
-
+  
 # Installation
 
 1. Cloner le repo
@@ -63,21 +63,21 @@ git clone https://github.com/Doruo/JellyBot.git
 pip install discord.py requests python-dotenv
 ```
 
-3. Créer un fichier `.env` dans le dossier config/ et ajouter ces informations:
-```
-# APPLICATION
-APPLICATION_ID=your_app_id
-# DISCORD
-DISCORD_TOKEN='your_token'
-DISCORD_CHANNEL_ID=your_channel_id
-# JELLYFIN
-JELLYFIN_HOST='your_host'
-JELLYFIN_PORT='your_port'
-JELLYFIN_API_KEY='your_api_kei'
-ADMIN_USER_ID='your_admin_user_id'
+3. Ouvrer un terminal dans le dépot, et lancer l'installation:
+
+Sur Windows :
+
+```powershell
+./install/install.ps1
 ```
 
-Il faut remplacer ces valeurs par les votre. Pour cela, vous pouvez retrouvez ces informations dans la section Configuration.
+Sur Linux :
+```bash
+./install/install.bash
+```
+Cela vous ouvrira un script qui va automatiquement configurer l'application.
+Il faudra saisir plusieurs informations configuration qui vous sont confidentielles. 
+Pour cela, vous pouvez voir comment retrouvez ces informations dans la section Configuration.
 
 4. Lancer le bot
 
@@ -91,12 +91,12 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 Puis executer le script de lancement :
 
 ```powershell
-./run.ps1
+./scripts/run.ps1
 ```
 
 Sur Linux :
 ```bash
-./run.bash
+./scripts/run.bash
 ```
 
 # Configuration
@@ -120,8 +120,8 @@ Sur Linux :
 
 1. Dans Jellyfin, aller dans Dashboard > API Keys
 2. Générer une nouvelle clé API
-3. Copier cette clé dans votre fichier .env (JELLYFIN_API_KEY)
-4. Ajouter l'URL de votre serveur dans .env (JELLYFIN_URL)
+3. Copier cette clé dans votre script d'installation (JELLYFIN_API_KEY)
+4. Ajouter l'URL de votre serveur dans ce script d'installation .env (JELLYFIN_URL)
 5. To find your admin user id : connect to your jellyfin website as Admin > Left Panel > Users > your user, and copy the user Id from the url.
 
 # Annexes
